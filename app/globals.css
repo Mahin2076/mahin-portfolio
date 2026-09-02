@@ -307,6 +307,9 @@ button { color: inherit; font: inherit; }
 .contact-orbit span:nth-child(1) { left: 8%; top: 28%; }.contact-orbit span:nth-child(2) { right: 16%; bottom: 19%; background: var(--blue); }.contact-orbit span:nth-child(3) { left: 50%; top: 16%; background: var(--orange); }
 
 footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 28px clamp(22px, 5vw, 78px); border-top: 1px solid var(--border); background: var(--ink); color: #92978c; font: 600 8px/1 var(--font-geist-mono), monospace; letter-spacing: .08em; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { transition: color .25s ease; }
+.footer-links a:hover { color: var(--lime); }
 
 [data-reveal] { opacity: 0; transform: translateY(65px); filter: blur(7px); transition: opacity .85s cubic-bezier(.2,.8,.2,1), transform .85s cubic-bezier(.2,.8,.2,1), filter .85s ease; }
 [data-reveal].is-visible { opacity: 1; transform: none; filter: blur(0); }

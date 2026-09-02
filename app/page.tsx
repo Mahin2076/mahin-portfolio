@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 
 const LINKEDIN = 'https://www.linkedin.com/in/mahin-bharathwaj-344b8a31b/';
+const GITHUB = 'https://github.com/Mahin2076';
 
 const projects = [
   {
@@ -260,6 +261,7 @@ export default function Home() {
           <a href="#work">Work</a>
           <a href="#experience">Experience</a>
           <a href="#about">About</a>
+          <a href={GITHUB} target="_blank" rel="noreferrer">GitHub ↗</a>
           <a className="nav-contact" href={LINKEDIN} target="_blank" rel="noreferrer">Let&apos;s talk <span>↗</span></a>
         </div>
         <button
@@ -279,7 +281,8 @@ export default function Home() {
             <span>0{index + 1}</span>{item}
           </a>
         ))}
-        <a href={LINKEDIN} target="_blank" rel="noreferrer"><span>04</span>LinkedIn ↗</a>
+        <a href={GITHUB} target="_blank" rel="noreferrer"><span>04</span>GitHub ↗</a>
+        <a href={LINKEDIN} target="_blank" rel="noreferrer"><span>05</span>LinkedIn ↗</a>
       </div>
 
       <main className="site-shell">
@@ -409,6 +412,7 @@ export default function Home() {
               Previously at Berkeley&apos;s RadWatch / DoseNet lab. Research at UCLA. Tech Director at Grizzly Hacks. Usually somewhere between a whiteboard, a terminal, and a deadline that looked impossible yesterday.
             </p>
             <div className="about-links">
+              <a href={GITHUB} target="_blank" rel="noreferrer">GitHub · @Mahin2076 <span>↗</span></a>
               <a href={LINKEDIN} target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
               <a href="https://grizzlyhacks.com" target="_blank" rel="noreferrer">Grizzly Hacks <span>↗</span></a>
               <a href="https://radwatch.berkeley.edu/team/mahin-bharathwaj/" target="_blank" rel="noreferrer">Berkeley RadWatch <span>↗</span></a>
@@ -429,7 +433,10 @@ export default function Home() {
       <footer>
         <a className="wordmark" href="#top" aria-label="Back to top">MB<span>//26</span></a>
         <p>BUILDING FROM DANVILLE, CA · © {year}</p>
-        <a href="#top">BACK TO TOP ↑</a>
+        <div className="footer-links">
+          <a href={GITHUB} target="_blank" rel="noreferrer">GITHUB ↗</a>
+          <a href="#top">BACK TO TOP ↑</a>
+        </div>
       </footer>
     </>
   );
