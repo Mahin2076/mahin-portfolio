@@ -14,19 +14,29 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mahin-builds.bharathwajmahin.chatgpt.site'),
-  title: 'Mahin Bharathwaj — Builder, Researcher, 10× Hackathon Winner',
-  description: 'Mahin Bharathwaj builds ambitious systems across AI, robotics, hardware, and community.',
+  title: 'Mahin Bharathwaj — AI, Robotics, and Hardware',
+  description:
+    'Mahin Bharathwaj is a student builder working across AI, robotics, hardware, and community.',
   icons: { icon: '/favicon.svg' },
   openGraph: {
-    title: 'Mahin Bharathwaj — I build things that shouldn’t work.',
-    description: '10× hackathon winner building across AI, robotics, hardware, and community.',
+    title: 'Mahin Bharathwaj — AI, Robotics, and Hardware',
+    description:
+      'A student builder making ambitious ideas feel simple, useful, and real.',
     type: 'website',
-    images: [{ url: 'https://mahin-builds.bharathwajmahin.chatgpt.site/og.png', width: 1672, height: 941, alt: 'Mahin Bharathwaj portfolio' }],
+    images: [
+      {
+        url: 'https://mahin-builds.bharathwajmahin.chatgpt.site/og.png',
+      width: 1664,
+      height: 936,
+        alt: 'Mahin Bharathwaj portfolio',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Mahin Bharathwaj — I build things that shouldn’t work.',
-    description: '10× hackathon winner building across AI, robotics, hardware, and community.',
+    title: 'Mahin Bharathwaj — AI, Robotics, and Hardware',
+    description:
+      'A student builder making ambitious ideas feel simple, useful, and real.',
     images: ['https://mahin-builds.bharathwajmahin.chatgpt.site/og.png'],
   },
 };
