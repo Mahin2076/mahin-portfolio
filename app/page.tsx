@@ -204,6 +204,7 @@ export default function Home() {
         >
           <span>10 hackathon wins</span>
           <span>600+ builders</span>
+          <span>5k linkedin followers</span>
           <span>always learning</span>
         </div>
       </section>
@@ -294,6 +295,22 @@ export default function Home() {
               <i />
             </span>
             <p>built across software, robots, hardware, and community.</p>
+          </Reveal>
+          <Reveal delay={240} className="proof-card proof-card-photo">
+            <Image
+              className="proof-photo"
+              src="/assets/community.png"
+              alt="Mahin with friends"
+              fill
+              sizes="(max-width: 680px) 100vw, 66vw"
+            />
+            <div className="photo-stat-pill">
+              <span className="proof-number">5k</span>
+              <p>linkedin followers</p>
+              <a href={LINKEDIN} target="_blank" rel="noreferrer">
+                view profile ↗
+              </a>
+            </div>
           </Reveal>
         </div>
       </section>

@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: 'https://mahin-builds.bharathwajmahin.chatgpt.site/og.png',
-      width: 1664,
-      height: 936,
+        width: 1664,
+        height: 936,
         alt: 'Mahin Bharathwaj portfolio',
       },
     ],
