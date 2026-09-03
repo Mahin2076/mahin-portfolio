@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, type CSSProperties } from 'react';
 
 const LINKEDIN = 'https://www.linkedin.com/in/mahin-bharathwaj-344b8a31b/';
 const GITHUB = 'https://github.com/Mahin2076';
@@ -9,40 +9,61 @@ const GITHUB = 'https://github.com/Mahin2076';
 const projects = [
   {
     number: '01',
-    title: 'Foundry',
-    label: 'hackathon track winner',
+    title: 'foundry',
+    type: 'ai agents',
     description:
       'an agentic software factory that researches where a product can win, then turns the idea into a shipped experience.',
-    outcome: 'idea → shipped',
-    tags: ['ai agents', 'autonomous workflows', 'product'],
+    result: 'track winner',
+    detail: 'zero downtime hackathon',
   },
   {
     number: '02',
-    title: 'Vero',
-    label: '2nd place · los altos hacks',
+    title: 'vero',
+    type: 'machine learning',
     description:
       'a real-time misinformation detector that analyzes headlines and turns noisy information into a clearer decision.',
-    outcome: 'live analysis',
-    tags: ['machine learning', 'real-time', 'signal'],
+    result: '2nd place',
+    detail: 'los altos hacks',
   },
   {
     number: '03',
-    title: 'BattleBets',
-    label: 'battlebots ai build night',
+    title: 'battlebets',
+    type: 'computer vision',
     description:
-      'historical fight intelligence meets live computer vision to update win probabilities while two robots are still in the arena.',
-    outcome: 'live odds',
-    tags: ['computer vision', 'data', 'prediction'],
+      'historical fight intelligence meets live vision to update win probabilities while two robots are still in the arena.',
+    result: 'live odds',
+    detail: 'battlebots ai build night',
   },
   {
     number: '04',
-    title: 'Grizzly Hacks',
-    label: 'tech director · community builder',
+    title: 'grizzly hacks',
+    type: 'community systems',
     description:
-      'a student hackathon platform and community made to give young builders a real place to start, ship, and find their people.',
-    outcome: '600+ builders',
-    tags: ['community', 'systems', 'partnerships'],
+      'a student hackathon platform and community giving young builders a real place to start, ship, and find their people.',
+    result: '600+ builders',
+    detail: 'tech director',
     href: 'https://grizzlyhacks.com',
+  },
+];
+
+const metrics = [
+  {
+    label: 'hackathon wins',
+    value: '10×',
+    note: 'across ai, hardware, robotics, and product',
+    width: '100%',
+  },
+  {
+    label: 'linkedin followers',
+    value: '5k',
+    note: 'a growing network of builders and researchers',
+    width: '82%',
+  },
+  {
+    label: 'builders reached',
+    value: '600+',
+    note: 'through student-led hackathon communities',
+    width: '68%',
   },
 ];
 
@@ -52,7 +73,7 @@ const experience = [
     role: 'researcher',
     org: 'ucla',
     detail:
-      'studied why manufacturing robots struggled during tesla’s model 3 ramp; research published in ucla’s abstract booklet.',
+      'studied why manufacturing robots struggled during tesla’s model 3 ramp; published in ucla’s abstract booklet.',
   },
   {
     year: '2025—26',
@@ -71,77 +92,36 @@ const experience = [
   },
 ];
 
-const disciplines = [
-  'ai agents',
-  'robotics',
-  'computer vision',
-  'mechatronics',
-  'research',
-  'community',
-];
-
-function Reveal({
-  children,
-  className = '',
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <div
-      className={className}
-      data-reveal
-      style={{ '--reveal-delay': `${delay}ms` } as CSSProperties}
-    >
-      {children}
-    </div>
-  );
-}
-
 export default function Home() {
   useEffect(() => {
-    const elements = document.querySelectorAll<HTMLElement>('[data-reveal]');
+    document.documentElement.classList.add('ready');
+    const items = document.querySelectorAll<HTMLElement>('[data-reveal]');
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
+            entry.target.classList.add('visible');
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.14 },
+      { threshold: 0.12 },
     );
 
-    const updateScroll = () => {
-      const height = document.documentElement.scrollHeight - window.innerHeight;
-      document.documentElement.style.setProperty(
-        '--scroll',
-        `${height > 0 ? window.scrollY / height : 0}`,
-      );
-    };
-
-    elements.forEach((element) => observer.observe(element));
-    updateScroll();
-    window.addEventListener('scroll', updateScroll, { passive: true });
-
+    items.forEach((item) => observer.observe(item));
     return () => {
+      document.documentElement.classList.remove('ready');
       observer.disconnect();
-      window.removeEventListener('scroll', updateScroll);
     };
   }, []);
 
   return (
-    <main className="site-shell">
-      <div className="scroll-line" aria-hidden="true" />
-
-      <nav className="nav-pill" aria-label="Primary navigation">
-        <a className="nav-name" href="#top">
-          mahin.
+    <main>
+      <header className="site-header">
+        <a href="#top" className="mark">
+          mahin
         </a>
-        <div className="nav-links">
+        <nav aria-label="Primary navigation">
           <a href="#work">work</a>
           <a href="#about">about</a>
           <a href={GITHUB} target="_blank" rel="noreferrer">
@@ -150,109 +130,99 @@ export default function Home() {
           <a href={LINKEDIN} target="_blank" rel="noreferrer">
             linkedin
           </a>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
       <section className="hero" id="top">
-        <div className="ambient-bubble bubble-one" aria-hidden="true" />
-        <div className="ambient-bubble bubble-two" aria-hidden="true" />
-
-        <div className="hero-copy">
-          <p className="eyebrow page-enter page-enter-one">
-            <span className="status-dot" /> student builder · danville, ca
-          </p>
-          <h1 className="page-enter page-enter-two">
-            i build with ai,
-            <br />
-            robotics, and hardware.
-          </h1>
-          <p className="hero-note page-enter page-enter-three">
-            i like taking ambitious ideas and making them feel simple, useful,
-            and real.
-          </p>
-          <div className="hero-actions page-enter page-enter-four">
-            <a className="soft-button soft-button-light" href="#work">
-              see my work <span>↓</span>
-            </a>
-            <a
-              className="soft-button"
-              href={GITHUB}
-              target="_blank"
-              rel="noreferrer"
-            >
-              github <span>↗</span>
-            </a>
-          </div>
-        </div>
-
-        <div className="portrait-wrap page-enter page-enter-three">
-          <div className="portrait-orbit" aria-hidden="true" />
+        <p className="hero-name">mahin bharathwaj</p>
+        <div className="portrait-frame">
           <Image
-            className="portrait"
             src="/assets/mahin.jpg"
             alt="Mahin Bharathwaj"
-            width={540}
-            height={620}
+            width={620}
+            height={720}
             priority
           />
-          <p className="portrait-caption">curious by default.</p>
         </div>
-
-        <div
-          className="stat-row page-enter page-enter-four"
-          aria-label="Highlights"
-        >
-          <span>10 hackathon wins</span>
-          <span>600+ builders</span>
+        <p className="hero-line">
+          student builder working across ai, robotics, and hardware.
+        </p>
+        <div className="command-bar">
+          <code>$ open mahin&apos;s work</code>
+          <a href="#work">enter →</a>
+        </div>
+        <div className="quick-links">
+          <span>10× hackathon winner</span>
           <span>5k linkedin followers</span>
-          <span>always learning</span>
+          <span>danville, california</span>
         </div>
+        <a className="scroll-cue" href="#practice">
+          scroll to inspect ↓
+        </a>
       </section>
 
-      <div className="marquee" aria-hidden="true">
-        <div className="marquee-track">
-          {[...disciplines, ...disciplines].map((item, index) => (
-            <span key={`${item}-${index}`}>
-              {item}
-              <i>·</i>
-            </span>
-          ))}
-        </div>
-      </div>
+      <div className="content">
+        <section className="text-section" id="practice" data-reveal>
+          <div className="section-intro">
+            <span>01</span>
+            <h1>how i work</h1>
+            <p>three principles</p>
+          </div>
+          <div className="manifesto">
+            <h2>build the strange idea until it feels obvious.</h2>
+            <ol>
+              <li>
+                <span>1.</span>
+                <p>
+                  start with a real problem, not a technology looking for one.
+                </p>
+              </li>
+              <li>
+                <span>2.</span>
+                <p>
+                  make the smallest version that proves the hard part works.
+                </p>
+              </li>
+              <li>
+                <span>3.</span>
+                <p>
+                  put it in front of people, learn quickly, and keep shipping.
+                </p>
+              </li>
+            </ol>
+          </div>
+        </section>
 
-      <section className="work-section paper-section" id="work">
-        <Reveal className="section-heading">
-          <p className="section-kicker">selected work · 01</p>
-          <h2>
-            some things
-            <br />
-            i&apos;ve made.
-          </h2>
-          <p className="section-note">
-            small teams. weird ideas. real things that work.
-          </p>
-        </Reveal>
+        <section className="work-section" id="work">
+          <div className="section-intro" data-reveal>
+            <span>02</span>
+            <h1>selected work</h1>
+            <p>things i&apos;ve built</p>
+          </div>
+          <div className="project-table">
+            {projects.map((project, index) => {
+              const content = (
+                <>
+                  <span className="project-number">{project.number}</span>
+                  <div className="project-title">
+                    <h2>{project.title}</h2>
+                    <span>{project.type}</span>
+                  </div>
+                  <p>{project.description}</p>
+                  <div className="project-result">
+                    <span>{project.result}</span>
+                    <small>{project.detail}</small>
+                  </div>
+                  <span className="project-arrow">↗</span>
+                </>
+              );
 
-        <div className="project-list">
-          {projects.map((project, index) => (
-            <Reveal key={project.title} delay={index * 70}>
-              <article className="project-card">
-                <p className="project-number">{project.number}</p>
-                <div className="project-main">
-                  <p className="project-label">{project.label}</p>
-                  <h3>{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
-                  <ul
-                    className="tag-list"
-                    aria-label={`${project.title} topics`}
-                  >
-                    {project.tags.map((tag) => (
-                      <li key={tag}>{tag}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="project-side">
-                  <p>{project.outcome}</p>
+              return (
+                <article
+                  key={project.title}
+                  data-reveal
+                  style={{ '--delay': `${index * 55}ms` } as CSSProperties}
+                >
                   {project.href ? (
                     <a
                       href={project.href}
@@ -260,87 +230,80 @@ export default function Home() {
                       rel="noreferrer"
                       aria-label={`visit ${project.title}`}
                     >
-                      ↗
+                      {content}
                     </a>
                   ) : (
-                    <span aria-hidden="true">↗</span>
+                    <div>{content}</div>
                   )}
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="proof-section">
-        <Reveal className="proof-heading">
-          <p className="section-kicker">a few numbers · 02</p>
-          <h2>
-            quiet design.
-            <br />
-            loud results.
-          </h2>
-        </Reveal>
-        <div className="proof-grid">
-          <Reveal delay={60} className="proof-card proof-card-wide">
-            <span className="proof-number">10×</span>
-            <p>hackathon wins</p>
-          </Reveal>
-          <Reveal delay={120} className="proof-card">
-            <span className="proof-number">600+</span>
-            <p>student builders brought together</p>
-          </Reveal>
-          <Reveal delay={180} className="proof-card proof-card-soft">
-            <span className="tiny-orbit" aria-hidden="true">
-              <i />
-            </span>
-            <p>built across software, robots, hardware, and community.</p>
-          </Reveal>
-          <Reveal delay={240} className="proof-card proof-card-photo">
-            <Image
-              className="proof-photo"
-              src="/assets/community.png"
-              alt="Mahin with friends"
-              fill
-              sizes="(max-width: 680px) 100vw, 66vw"
-            />
-            <div className="photo-stat-pill">
-              <span className="proof-number">5k</span>
-              <p>linkedin followers</p>
-              <a href={LINKEDIN} target="_blank" rel="noreferrer">
-                view profile ↗
-              </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="experience-section paper-section" id="experience">
-        <Reveal className="section-heading">
-          <p className="section-kicker">experience · 03</p>
-          <h2>
-            where i&apos;ve
-            <br />
-            been learning.
-          </h2>
-          <p className="section-note">
-            research labs, student communities, and a lot of building.
+                </article>
+              );
+            })}
+          </div>
+          <p className="table-note" data-reveal>
+            more experiments and source code live on{' '}
+            <a href={GITHUB} target="_blank" rel="noreferrer">
+              github →
+            </a>
           </p>
-        </Reveal>
+        </section>
 
-        <div className="experience-list">
-          {experience.map((item, index) => (
-            <Reveal key={`${item.org}-${item.year}`} delay={index * 80}>
-              <article className="experience-card">
-                <p className="experience-year">{item.year}</p>
-                <div>
-                  <p className="experience-role">{item.role}</p>
-                  <h3>{item.org}</h3>
+        <section className="metrics-section">
+          <div className="section-intro" data-reveal>
+            <span>03</span>
+            <h1>signals</h1>
+            <p>selected numbers</p>
+          </div>
+          <div className="metric-table">
+            <div className="metric-head">
+              <span>signal</span>
+              <span>value</span>
+              <span>relative scale</span>
+              <span>context</span>
+            </div>
+            {metrics.map((metric, index) => (
+              <div
+                className="metric-row"
+                data-reveal
+                key={metric.label}
+                style={
+                  {
+                    '--delay': `${index * 65}ms`,
+                    '--metric-width': metric.width,
+                  } as CSSProperties
+                }
+              >
+                <span>{metric.label}</span>
+                <strong>{metric.value}</strong>
+                <div className="metric-track">
+                  <i />
                 </div>
-                <p className="experience-detail">{item.detail}</p>
+                <small>{metric.note}</small>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="experience-section">
+          <div className="section-intro" data-reveal>
+            <span>04</span>
+            <h1>experience</h1>
+            <p>where i&apos;ve learned</p>
+          </div>
+          <div className="experience-table">
+            {experience.map((item, index) => (
+              <article
+                key={`${item.org}-${item.year}`}
+                data-reveal
+                style={{ '--delay': `${index * 65}ms` } as CSSProperties}
+              >
+                <span>{item.year}</span>
+                <div>
+                  <h2>{item.org}</h2>
+                  <small>{item.role}</small>
+                </div>
+                <p>{item.detail}</p>
                 {item.href ? (
                   <a
-                    className="circle-link"
                     href={item.href}
                     target="_blank"
                     rel="noreferrer"
@@ -349,84 +312,91 @@ export default function Home() {
                     ↗
                   </a>
                 ) : (
-                  <span className="circle-link" aria-hidden="true">
-                    ·
-                  </span>
+                  <i>—</i>
                 )}
               </article>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-section" id="about">
-        <Reveal className="about-visual">
-          <div className="about-photo-shell">
-            <Image
-              className="about-photo"
-              src="/assets/mahin.jpg"
-              alt="Mahin smiling outdoors"
-              width={760}
-              height={900}
-            />
-            <span>hi :)</span>
+            ))}
           </div>
-        </Reveal>
-        <Reveal className="about-copy" delay={100}>
-          <p className="section-kicker">about me · 04</p>
-          <h2>i&apos;m mahin.</h2>
-          <p>
-            i&apos;m a student who likes building at the edge of software and
-            the physical world. the best projects, to me, are surprising at
-            first and obvious once you use them.
-          </p>
-          <p>
-            right now i&apos;m exploring ai agents, robotics, computer vision,
-            and the communities that help more young people become builders.
-          </p>
-          <div className="about-links">
-            <a
-              className="soft-button soft-button-light"
-              href={GITHUB}
-              target="_blank"
-              rel="noreferrer"
-            >
-              github <span>↗</span>
-            </a>
-            <a
-              className="soft-button"
-              href={LINKEDIN}
-              target="_blank"
-              rel="noreferrer"
-            >
-              linkedin <span>↗</span>
-            </a>
-          </div>
-        </Reveal>
-      </section>
+        </section>
 
-      <section className="contact-section" id="contact">
-        <Reveal className="contact-bubble">
-          <p>have a weird idea?</p>
+        <section className="community-section">
+          <div className="section-intro" data-reveal>
+            <span>05</span>
+            <h1>community</h1>
+            <p>building is social</p>
+          </div>
+          <figure data-reveal>
+            <div className="community-image">
+              <Image
+                src="/assets/community.png"
+                alt="Mahin with friends"
+                width={1036}
+                height={1378}
+              />
+            </div>
+            <figcaption>
+              <span>people over platforms.</span>
+              <p>5k linkedin followers · 600+ student builders reached</p>
+              <a href={LINKEDIN} target="_blank" rel="noreferrer">
+                linkedin profile ↗
+              </a>
+            </figcaption>
+          </figure>
+        </section>
+
+        <section className="about-section" id="about" data-reveal>
+          <div className="section-intro">
+            <span>06</span>
+            <h1>about</h1>
+            <p>the short version</p>
+          </div>
+          <div className="about-grid">
+            <h2>i&apos;m mahin.</h2>
+            <div>
+              <p>
+                i&apos;m a student who likes building at the edge of software
+                and the physical world. the best projects, to me, are surprising
+                at first and obvious once you use them.
+              </p>
+              <p>
+                right now i&apos;m exploring ai agents, robotics, computer
+                vision, and the communities that help more young people become
+                builders.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="contact-section" data-reveal>
+          <div className="section-intro">
+            <span>07</span>
+            <h1>contact</h1>
+            <p>have a strange idea?</p>
+          </div>
           <h2>let&apos;s build it.</h2>
-          <a href={LINKEDIN} target="_blank" rel="noreferrer">
-            say hello <span>↗</span>
-          </a>
-        </Reveal>
-      </section>
+          <div className="contact-command">
+            <code>linkedin.com/in/mahin-bharathwaj</code>
+            <a href={LINKEDIN} target="_blank" rel="noreferrer">
+              open ↗
+            </a>
+          </div>
+          <div className="contact-links">
+            <a href={GITHUB} target="_blank" rel="noreferrer">
+              github
+            </a>
+            <span>·</span>
+            <a href={LINKEDIN} target="_blank" rel="noreferrer">
+              linkedin
+            </a>
+          </div>
+        </section>
 
-      <footer>
-        <a href="#top">mahin bharathwaj</a>
-        <p>building between code and the real world.</p>
-        <div>
-          <a href={GITHUB} target="_blank" rel="noreferrer">
-            github ↗
-          </a>
-          <a href={LINKEDIN} target="_blank" rel="noreferrer">
-            linkedin ↗
-          </a>
-        </div>
-      </footer>
+        <footer>
+          <span>mahin bharathwaj</span>
+          <span>building between code and the real world.</span>
+          <a href="#top">back to top ↑</a>
+        </footer>
+      </div>
     </main>
   );
 }

@@ -14,27 +14,27 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mahin-builds.bharathwajmahin.chatgpt.site'),
-  title: 'Mahin Bharathwaj — AI, Robotics, and Hardware',
+  title: 'Mahin Bharathwaj — Builder',
   description:
     'Mahin Bharathwaj is a student builder working across AI, robotics, hardware, and community.',
   icons: { icon: '/favicon.svg' },
   openGraph: {
-    title: 'Mahin Bharathwaj — AI, Robotics, and Hardware',
+    title: 'Mahin Bharathwaj — Builder',
     description:
       'A student builder making ambitious ideas feel simple, useful, and real.',
     type: 'website',
     images: [
       {
         url: 'https://mahin-builds.bharathwajmahin.chatgpt.site/og.png',
-        width: 1664,
-        height: 936,
+        width: 1672,
+        height: 941,
         alt: 'Mahin Bharathwaj portfolio',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Mahin Bharathwaj — AI, Robotics, and Hardware',
+    title: 'Mahin Bharathwaj — Builder',
     description:
       'A student builder making ambitious ideas feel simple, useful, and real.',
     images: ['https://mahin-builds.bharathwajmahin.chatgpt.site/og.png'],
