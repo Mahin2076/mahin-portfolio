@@ -2,6 +2,12 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : 'http://localhost:3000');
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -13,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://mahin-builds.bharathwajmahin.chatgpt.site'),
+  metadataBase: new URL(siteUrl),
   title: 'Mahin Bharathwaj — Builder',
   description:
     'Mahin Bharathwaj is a student builder working across AI, robotics, hardware, and community.',
@@ -25,7 +31,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://mahin-builds.bharathwajmahin.chatgpt.site/og.png',
+        url: '/og.png',
         width: 1672,
         height: 941,
         alt: 'Mahin Bharathwaj portfolio',
@@ -37,7 +43,7 @@ export const metadata: Metadata = {
     title: 'Mahin Bharathwaj — Builder',
     description:
       'A student builder making ambitious ideas feel simple, useful, and real.',
-    images: ['https://mahin-builds.bharathwajmahin.chatgpt.site/og.png'],
+    images: ['/og.png'],
   },
 };
 
