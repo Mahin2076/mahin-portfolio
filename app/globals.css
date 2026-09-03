@@ -133,7 +133,8 @@ a:focus-visible {
   height: 100%;
   filter: grayscale(1) contrast(1.45);
   object-fit: cover;
-  object-position: center 22%;
+  object-position: center;
+  transform: scale(1.18);
   transition:
     filter 500ms ease,
     transform 900ms ease;
@@ -141,7 +142,7 @@ a:focus-visible {
 
 .portrait-frame:hover img {
   filter: grayscale(1) contrast(1.2);
-  transform: scale(1.025);
+  transform: scale(1.21);
 }
 
 .portrait-frame::after {

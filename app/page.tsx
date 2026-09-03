@@ -119,7 +119,7 @@ export default function Home() {
     <main>
       <header className="site-header">
         <a href="#top" className="mark">
-          mahin
+          mahin&apos;s portfolio
         </a>
         <nav aria-label="Primary navigation">
           <a href="#work">work</a>
@@ -137,7 +137,7 @@ export default function Home() {
         <p className="hero-name">mahin bharathwaj</p>
         <div className="portrait-frame">
           <Image
-            src="/assets/mahin.jpg"
+            src="/assets/mahin-headshot.png"
             alt="Mahin Bharathwaj"
             width={620}
             height={720}
