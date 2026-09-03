@@ -2,6 +2,8 @@
 
 A minimal, animated portfolio for Mahin Bharathwaj, built with Next.js and deployed on Vercel.
 
+Live site: [mahin-portfolio-three.vercel.app](https://mahin-portfolio-three.vercel.app)
+
 ## Local development
 
 ```bash
